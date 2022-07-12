@@ -1,0 +1,52 @@
+package com.silva.ToDoList.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import com.silva.ToDoList.util.HIbernateUtil;
+
+public class GenericDao<E> {
+	
+	public void save(E entity) {
+		EntityManager entityManager = HIbernateUtil.getEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.persist(entity);
+		transaction.commit();
+	}
+	
+	public void merge(E entity) {
+		EntityManager entityManager = HIbernateUtil.getEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.merge(entity);
+		transaction.commit();
+	}
+	
+	public void deleteById(E entity) {
+		EntityManager entityManager = HIbernateUtil.getEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		Object id = HIbernateUtil.getPrimaryKeyObject(entity);
+		transaction.begin();
+
+		entityManager.createQuery("delete " + entity.getClass().getCanonicalName() + " where id = " + id).executeUpdate();
+		
+		transaction.commit();
+		
+	}
+	
+	public List<E> getAllResultList(Class<E> nameClass) {
+		EntityManager entityManager = HIbernateUtil.getEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+
+		List<E> resultList = entityManager.createQuery("from " + nameClass.getName()).getResultList();;
+		
+		transaction.commit();
+		
+		return resultList;
+	}
+	
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>ToDo-List</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="style" name="style.css" />
+	<h:form id="app">
+		<div class="content">
+			<div class="head">
+				<div class="campDate">
+					<h:outputText class="date" value="#{taskBean.currentDateFormat}"/>
+					<h:outputText class="quantityTasks" value="#{taskBean.quantityTasks} tasks " />
+				</div>
+
+				<input type="button" class="btnOpnModal" id="btnOpnModal" value="+" />
+			</div>
+			<div class="body">
+				<h:dataTable value="#{taskBean.tasks}" var="task">
+					<h:column>
+						<div class="contentTask">
+							<div class="rowTask">
+								<div class="infos">
+									<h:commandButton image="/resources/images/icons/trash-2.svg" class="btn-remove" action="#{taskBean.delete}" >
+										<f:setPropertyActionListener value="#{task}" target="#{taskBean.taskEntity}"/>
+									</h:commandButton>
+																			
+									<h:outputText class="description" value="#{task.description}" />
+								</div>
+								<h:outputText class="hour" value="#{task.createdAt}">
+									<f:convertDateTime pattern="HH:mm"/>
+								</h:outputText>
+							</div>
+						</div>
+					</h:column>
+				</h:dataTable>
+			</div>
+		</div>
+
+		<div class="modalAddTask" id="modalAddTask">
+			<h:inputText id="inTask" a:placeholder="Task"
+				value="#{taskBean.taskEntity.description}" />
+			<h:commandButton value="ADD" action="#{taskBean.save}" />
+		</div>
+	</h:form>
+	<h:outputScript library="script" name="index.js" />
+</h:body>
+</html>

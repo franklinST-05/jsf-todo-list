@@ -1,0 +1,173 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary-color: rgb(0, 102, 255);
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: var(--primary-color);
+}
+
+.content {
+    width: 400px;
+    background-color: #ffffff;
+    padding: 25px;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+.content .head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.content .head .btnOpnModal {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary-color);
+    color: rgb(255,255,255);
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+    font-size: 27px;
+}
+.content .head .btnOpnModal.opened {
+    transform: rotate(45deg);
+    background-color: rgb(255 0 129);
+}
+
+.content .head .campDate {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+
+}
+
+.content .head .date {
+    width: max-content;
+    font-size: 20px;
+    font-weight: 800;
+    color: rgb(98, 90, 104);
+    text-transform: capitalize;
+}
+
+.content .head .quantityTasks {
+    font-size: 14px;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+.content .body {
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+    min-height: 350px;
+    transition: 0.3s;
+    overflow-y: scroll;
+}
+.content .body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content .body::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background-color: rgb(226, 226, 226);
+}
+
+.content .body table,
+.content .body tbody,
+.content .body tbody tr {
+	width: 100%;
+	height: max-content;
+}
+
+.content .body .contentTask {
+    width: 100%;
+    height: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.content .body .contentTask .rowTask {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.content .body .contentTask .rowTask .infos {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
+}
+
+.content .body .contentTask .rowTask .infos .btn-remove {
+	width: 20px;
+	height: 20px;
+}
+
+.content .body .contentTask .rowTask .infos .description {
+    font-size: 15px;
+    color: rgb(30, 22, 36);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.content .body .contentTask .rowTask .hour {
+    font-size: 11.5px;
+    color: rgb(129, 129, 129);
+}
+
+.modalAddTask {
+    width: 400px;
+    height: 50px;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: -100px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modalAddTask input[type="text"] {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-radius: 10px 0px 0px 10px;
+    padding: 0px 0px 0px 12px;
+    font-size: 14px;
+}
+.modalAddTask input[type="button"],
+.modalAddTask input[type="submit"]
+ {
+    width: 100px;
+    height: 100%;
+    border-radius: 0px 10px 10px 0px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.modalAddTask.open {
+    top: 10px;
+}
