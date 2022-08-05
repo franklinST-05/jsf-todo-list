@@ -1,7 +1,7 @@
 # ToDoList
 simple annotation project, using PostgreSQL database to save annotations
 
-<img src="./git/display.gif" width="800">
+<img src="./git/display.gif" width="500">
 
 ### First Steps
 - `git clone` in the project
